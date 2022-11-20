@@ -73,3 +73,43 @@ model4.fit(training_data, training_label, epochs = 100, callbacks=[cb])
 
 ### Prediction
 ![Prediction](https://github.com/ANKITPODDER2000/data-science/blob/main/tensorflow/basic/image/prediction2.png)
+
+# Horse Human Dataset
+
+---
+
+### Important Code - New Block of Codes
+
+```
+import zipfile
+train_file = zipfile.ZipFile('/content/horse-or-human.zip', 'r')
+test_file  = zipfile.ZipFile('/content/validation-horse-or-human.zip', 'r')
+
+train_file.extractall('train-dir')
+test_file.extractall('test-dir')
+
+#----------------------------------------------------------------------#
+
+train_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale = 1.0/255.0)
+train_data = train_data_gen.flow_from_directory(
+    '/content/train-dir',
+    target_size = (150, 150),
+    batch_size = 128,
+    class_mode = 'binary'
+)
+#----------------------------------------------------------------------#
+history = model4.fit(
+    train_data,
+    steps_per_epoch = train_data.n // train_data.batch_size,
+    epochs = 100,
+    verbose = 1,
+    validation_data = test_data,
+    validation_steps = test_data.n // test_data.batch_size,
+    callbacks = [cb]
+)
+```
+### Loss | Accuracy Curve
+![alt text](https://github.com/ANKITPODDER2000/data-science/blob/main/tensorflow/basic/image/animation.gif)
+
+### Prediction
+![Prediction](https://github.com/ANKITPODDER2000/data-science/blob/main/tensorflow/basic/image/horse_human.png)
