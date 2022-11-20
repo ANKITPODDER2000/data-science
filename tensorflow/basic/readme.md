@@ -75,9 +75,7 @@ model4.fit(training_data, training_label, epochs = 100, callbacks=[cb])
 ![Prediction](https://github.com/ANKITPODDER2000/data-science/blob/main/tensorflow/basic/image/prediction2.png)
 
 # Horse Human Dataset
-
 ---
-
 ### Important Code - New Block of Codes
 
 ```
@@ -113,3 +111,26 @@ history = model4.fit(
 
 ### Prediction
 ![Prediction](https://github.com/ANKITPODDER2000/data-science/blob/main/tensorflow/basic/image/horse_human.png)
+
+# Horse Human Dataset - Augmentation
+### Important Code - New Block of Codes
+```
+train_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(
+    rescale = 1.0/255.0,
+    width_shift_range = 0.3,
+    height_shift_range = 0.3,
+    zoom_range = 0.3,
+    shear_range = 0.3,
+    horizontal_flip = True,
+    fill_mode = 'nearest'
+    
+)
+```
+### Augmentation
+![alt text](https://github.com/ANKITPODDER2000/data-science/blob/main/tensorflow/basic/image/Augmented_image.png)
+
+### Loss | Accuracy Curve
+![alt text](https://github.com/ANKITPODDER2000/data-science/blob/main/tensorflow/basic/image/animation-aug-horse-human.gif)
+
+### Prediction
+![Prediction](https://github.com/ANKITPODDER2000/data-science/blob/main/tensorflow/basic/image/pred_aug.png)
